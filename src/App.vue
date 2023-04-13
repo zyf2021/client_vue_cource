@@ -17,7 +17,7 @@
             v-bind:posts="posts"
             v-if = "!isPostLoading"
         />
-        <div v-else>Загрузка...</div>
+        <div v-else>Загрузка..</div>
     </div>
 
 </template>
