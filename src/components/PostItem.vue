@@ -1,8 +1,8 @@
 <template>
     <div class = "post">
-        <p><strong>{{ post.id }}</strong></p>
-        <p><strong>{{ post.title }}</strong></p>
-        <p><strong>{{ post.text }}</strong></p>
+        <div><strong>ID<br></strong>{{ post.id }}</div>
+        <p><strong>Название<br></strong>{{ post.title }}</p>
+        <p><strong>Текст<br></strong>{{ post.text }}</p>
         <p>Number of likes 
             <strong>{{ post.likes }}</strong></p>
         <div class="post__btns">
