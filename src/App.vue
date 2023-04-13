@@ -1,8 +1,14 @@
 <template>
     <div class = "app">
-    <post-form/>
-    <post-list v-bind:posts="posts"/>
-        
+    <post-form  
+        @create = "addPost"
+
+    />
+    <post-list
+        @add = "addLike" 
+        @remove = "removePost"
+        v-bind:posts="posts"
+    />
     </div>
 
 </template>
@@ -15,10 +21,7 @@ import PostForm from './components/PostForm.vue';
 export default {
   components: { PostForm, PostList },
     data() {
-
         return {
-            text: 'trertre',
-            title: 'rter',
             posts: [
                 {id:0, title: 'Новость 1', text: 'text', likes: 1},
                 {id:1, title: 'Новость 2', text: 'text', likes: 4},
@@ -27,18 +30,17 @@ export default {
         }
     },
     methods: {
+        addPost(post){
+            console.log(post)
+            post.id = this.posts.length
+            this.posts.push(post)
+        },
         addLike(id){
-            this.posts[id].likes += 1;
+            this.posts[id].likes += 1
         },
-        addPost(){
-            const newPost = {
-                id: Date.now(),
-                title: this.title,
-                text: this.text,
-                likes: 0
-            }
-            this.posts.push(newPost)
-        },
+        removePost(post){
+            this.posts = this.posts.filter(p => p.id !== post.id)
+        }
     }
 }
 </script>

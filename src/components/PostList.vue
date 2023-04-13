@@ -1,21 +1,40 @@
 <template>
-  <div class = "post" v-for="post in posts" :key = "post">
-        <h1>Главная страница</h1>
-        <p><strong>{{ post.title }}</strong></p>
-        <p><strong>{{ post.text }}</strong></p>
-        <div>Number of likes 
-            <strong>{{ post.likes }}</strong>
-            <button @click="addLike(post.id)">Like</button>
-        </div>
+    <div v-show="posts.length > 0">
+        <post-item 
+            v-for="post in posts" 
+            :post="post"
+            :key="post.id"
+            @remove="removePost(post)"
+            @add="addLike"
+        />
     </div>
+    <h3 v-show="posts.length == 0">Список пуст</h3>
 </template>
 
 <script>
+import PostItem from './PostItem.vue'
+//import MyButton from './UI/MyButton.vue';
+
 export default {
-    props: {
+  components: { PostItem },
+    props:
+    {
         posts: {
             type: Array,
             required: true,
+        },
+    },
+    data() {
+        return {
+            
+        }    
+    },
+    methods: {
+        addLike(id){
+            this.$emit('add', id)
+        },
+        removePost(post){
+            this.$emit('remove', post)
         }
     }
 
@@ -23,9 +42,5 @@ export default {
 </script>
 
 <style>
-    .post {
-            padding: 15px;
-            border: 1px solid teal;
-            margin-top: 15px;
-        }
+
 </style>

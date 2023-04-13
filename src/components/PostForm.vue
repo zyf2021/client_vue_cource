@@ -2,21 +2,18 @@
    <div >
         <form @submit.prevent>
             <h1>Создание поста</h1>
-            <input class = "input" 
-                   type = "title" 
-                   placeholder="Название"
-                   v-bind:value="post.title" 
-                   @input = "post.title = $event.target.value"
-            >
-            <input class = "input" 
+            <my-input placeholder="Название"
+                      v-model = "post.title"
+                      type="text"></my-input> 
+            
+            <my-input class = "input" 
                    type = "text" 
                    placeholder="Описание" 
-                   v-bind:value="post.text"
-                   @input = "post.text = $event.target.value"
-            >
-            <button class="btn" @click = "addPost">
+                   v-model="post.text"
+            ></my-input>
+            <my-button @click = "addPost">
                 Создать
-            </button>
+            </my-button>
         </form>
     </div>
 </template>
@@ -26,8 +23,22 @@ export default {
     data(){
         return {
             post: {
+                id: 0,
                 title: '',
                 text: '',
+                likes: 4
+            }
+        }
+    },
+    methods: {
+        addPost() {
+            this.post.id=Date.now()
+            this.post.likes = 0
+            this.$emit('create', this.post)
+            this.post = {
+                title: '',
+                text: '',
+                likes: '',
             }
         }
     }
@@ -35,19 +46,6 @@ export default {
 </script>
 
 <style>
-    .btn {
-        margin-top: 15px;
-        align-self: flex-end;
-        padding: 10px;
-        background: None;
-        color: teal;
-    }
-    .input {
-        width: 100%;
-        border: 1px solid teal;
-        padding: 10px;
-        margin-top: 10px;
-    }
     form {
         display:flex;
         flex-direction: column;
