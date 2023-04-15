@@ -12,12 +12,9 @@ export default {
 
 <style>
     .btn {
-        margin-top: 15px;
-        margin-right: 5px;
-        align-self: flex-end;
-        padding: 10px;
-        background: None;
-        color: teal;
-        border: 2px solid teal;
+      padding: 10px 15px;
+      background: none;
+      color: teal;
+      border: 1px solid teal;
     }
 </style>

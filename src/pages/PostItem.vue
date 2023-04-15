@@ -7,6 +7,7 @@
             <strong>{{ post.likes }}</strong></p>
         <div class="post__btns">
             <my-button @click="addLike(post.id)">Like</my-button>
+            <my-button>Open</my-button>
             <my-button
                 @click="removePost(post)"
             >Удалить
